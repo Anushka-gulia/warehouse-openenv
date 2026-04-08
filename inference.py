@@ -239,7 +239,17 @@ def main():
 if __name__ == "__main__":
     main()
 
-import time
+import gradio as gr
 
-while True:
-    time.sleep(60)
+def run_demo():
+    return "✅ OpenEnv is running successfully!"
+
+iface = gr.Interface(
+    fn=run_demo,
+    inputs=[],
+    outputs="text",
+    title="Warehouse OpenEnv",
+    description="AI Agent for resolving warehouse order exceptions"
+)
+
+iface.launch(server_name="0.0.0.0", server_port=7860)
