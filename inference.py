@@ -238,3 +238,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+import time
+
+while True:
+    time.sleep(60)
