@@ -1,0 +1,12 @@
+name: warehouse-order-exception-openenv
+version: 0.1.0
+description: OpenEnv benchmark for resolving warehouse and e-commerce order exceptions.
+entrypoint: inference.py
+tags:
+  - openenv
+  - logistics
+  - operations
+tasks:
+  - easy
+  - medium
+  - hard

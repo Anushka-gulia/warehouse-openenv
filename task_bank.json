@@ -1,0 +1,50 @@
+[
+  {
+    "task_id": "easy_damaged_001",
+    "difficulty": "easy",
+    "issue_type": "damaged_item",
+    "order_id": "ORD-1001",
+    "customer_tier": "standard",
+    "shipment_status": "delivered",
+    "damage_flag": true,
+    "wrong_item_flag": false,
+    "missing_item_flag": false,
+    "delay_days": 0,
+    "stock_available": true,
+    "refund_allowed": true,
+    "correct_resolution": "approve_replacement",
+    "correct_priority": "medium"
+  },
+  {
+    "task_id": "medium_delay_001",
+    "difficulty": "medium",
+    "issue_type": "delivery_delay",
+    "order_id": "ORD-2001",
+    "customer_tier": "premium",
+    "shipment_status": "in_transit",
+    "damage_flag": false,
+    "wrong_item_flag": false,
+    "missing_item_flag": false,
+    "delay_days": 4,
+    "stock_available": true,
+    "refund_allowed": true,
+    "correct_resolution": "expedite_shipment",
+    "correct_priority": "high"
+  },
+  {
+    "task_id": "hard_wrong_item_001",
+    "difficulty": "hard",
+    "issue_type": "wrong_item",
+    "order_id": "ORD-3001",
+    "customer_tier": "vip",
+    "shipment_status": "delivered",
+    "damage_flag": false,
+    "wrong_item_flag": true,
+    "missing_item_flag": false,
+    "delay_days": 2,
+    "stock_available": false,
+    "refund_allowed": true,
+    "correct_resolution": "approve_refund",
+    "correct_priority": "high"
+  }
+]
