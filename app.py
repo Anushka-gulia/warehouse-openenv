@@ -1,22 +1,25 @@
+from fastapi import FastAPI
 from warehouse_env import WarehouseOrderExceptionEnv
 from models import WarehouseAction
 
-def demo():
-    env = WarehouseOrderExceptionEnv(difficulty="easy")
+app = FastAPI()
+
+# create a global environment
+env = WarehouseOrderExceptionEnv(difficulty="easy")
+
+@app.get("/")
+def home():
+    return {"message": "OpenEnv API is running"}
+
+# ✅ REQUIRED ENDPOINT
+@app.post("/reset")
+def reset():
     result = env.reset()
-    print(result.model_dump())
+    return result.model_dump()
 
-    result = env.step(WarehouseAction(action_type="identify_issue", payload={"issue_type": "damaged_item"}))
-    print(result.model_dump())
-
-    result = env.step(WarehouseAction(action_type="assign_priority", payload={"priority": "medium"}))
-    print(result.model_dump())
-
-    result = env.step(WarehouseAction(action_type="resolve_case", payload={"resolution": "approve_replacement"}))
-    print(result.model_dump())
-
-    result = env.step(WarehouseAction(action_type="close_case", payload={}))
-    print(result.model_dump())
-
-if __name__ == "__main__":
-    demo()
+# ✅ REQUIRED ENDPOINT
+@app.post("/step")
+def step(action: dict):
+    action_obj = WarehouseAction(**action)
+    result = env.step(action_obj)
+    return result.model_dump()
