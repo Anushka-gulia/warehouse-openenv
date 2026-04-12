@@ -1,35 +1,25 @@
+from fastapi import FastAPI
 from warehouse_env import WarehouseOrderExceptionEnv
 from models import WarehouseAction
-from fastapi import FastAPI
 
-# ✅ CREATE APP AT TOP LEVEL
 app = FastAPI()
+
+# create a global environment
+env = WarehouseOrderExceptionEnv(difficulty="easy")
 
 @app.get("/")
 def home():
-    return {"message": "OpenEnv is running successfully!"}
+    return {"message": "OpenEnv API is running"}
 
-# ✅ REQUIRED FOR SUBMISSION
+# ✅ REQUIRED ENDPOINT
 @app.post("/reset")
 def reset():
-    env = WarehouseOrderExceptionEnv(difficulty="easy")
     result = env.reset()
     return result.model_dump()
 
-# (Optional but good)
+# ✅ REQUIRED ENDPOINT
 @app.post("/step")
 def step(action: dict):
-    env = WarehouseOrderExceptionEnv(difficulty="easy")
-    result = env.step(WarehouseAction(**action))
+    action_obj = WarehouseAction(**action)
+    result = env.step(action_obj)
     return result.model_dump()
-
-
-# 👇 OPTIONAL DEMO (NOT USED BY SERVER)
-def demo():
-    env = WarehouseOrderExceptionEnv(difficulty="easy")
-    result = env.reset()
-    print(result.model_dump())
-
-
-if __name__ == "__main__":
-    demo()
